@@ -3,7 +3,8 @@ var canvas = document.querySelector('canvas');
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
-
+console.log(canvas.width);
+console.log(canvas.height);
 var c = canvas.getContext('2d');
 // c.fillRect(100,100,100,100);
 // c.beginPath();
@@ -29,6 +30,7 @@ var c = canvas.getContext('2d');
 // 	c.strokeStyle = 'blue';
 // 	c.stroke();
 // 	c.closePath();
+// }
 
 // setInterval( function (argument) {   // Use for purposes of animation sixty frames pre second to appear smooth.
 // 	// body...
@@ -37,20 +39,25 @@ var c = canvas.getContext('2d');
 var x= 200;
 var y= 200;
 var radius = 30;
+var dx =1;
 
 function animation() {
 	requestAnimationFrame(animation); // Browser can optimize it, so animations will be smoother
 	 								  // Animations in active tabs will stop , allowing the Cpu to chill
 	 								  // More battery-friend
-	c.clearReact(0,0,canvas.width,canvas.height);   
+	c.clearRect(0, 0, canvas.width, canvas.height);   
     c.beginPath();
     c.arc(x, y, radius, 0, Math.PI *2, false);
     c.strokeStyle='red';
     c.stroke();
 
-    x+=1;
 
-    // if(x + radius > innerWidth || x - )
+    if(x + radius > innerWidth || x - radius < 0 )
+    {
+    	dx = dx * (-1);
+    }
+
+    x+=(2*dx);
 }
 
 animation();
